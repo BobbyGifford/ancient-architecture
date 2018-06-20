@@ -10,30 +10,13 @@ const Profile = require("../models/Profile");
 // Load User model
 const User = require("../models/User");
 
-// @route   GET api/profile/test
-// @desc    Tests profile route
-// @access  Public
-
-router.get("/test", (req, res) => res.json({ msg: "Profile Works" }));
-
-// @route   GET api/profile/testPrivate
-// @desc    Tests profile route with auth
-// @access  Private
-
-router.get("/testprivate", requireLogin, (req, res) =>
-  res.json({
-    msg: "Profile with Auth Works",
-    user: req.user
-  })
-);
-
 // @route    POST api/profile
 // @desc     Creates or edits new profile
 // @access   Private
 
 router.post("/", requireLogin, (req, res) => {
   console.log(req.body);
-  
+
   // Get fields
   const profileFields = {};
   profileFields.user = req.user.id;
@@ -64,6 +47,41 @@ router.post("/", requireLogin, (req, res) => {
       new Profile(profileFields).save().then(profile => res.json(profile));
     }
   });
+});
+
+// @route    GET api/profile
+// @desc     Fetches all profiles.
+// @access   Private
+
+router.get("/all", requireLogin, (req, res) => {
+  Profile.find()
+    .populate("user", ["displayName", "googleImg"])
+    .then(profiles => {
+      if (!profiles) {
+        res.status(404).json({ error: "No profiles found" });
+      }
+      res.json(profiles);
+    })
+    .catch(() => {
+      res.status(404).json({ error: "No profiles found" });
+    });
+});
+
+// @route    GET api/profile/user/user_id
+// @desc     Fetches profile by user id.
+// @access   Private
+
+router.get("/user/:user_id", requireLogin, (req, res) => {
+  Profile.findOne({ user: req.params.user_id })
+    .then(profile => {
+      if (!profile) {
+        res.status(404).json({ error: "No profile found" });
+      }
+      res.json(profile);
+    })
+    .catch(() => {
+      res.status(404).json({ error: "No profile found for that user" });
+    });
 });
 
 module.exports = router;
