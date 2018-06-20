@@ -49,6 +49,28 @@ router.post("/", requireLogin, (req, res) => {
   });
 });
 
+// @route    POST api/profile/locationsofinterest
+// @desc     Adds locations of interest.
+// @access   Private
+
+router.post("/locationsofinterest", requireLogin, (req, res) => {
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      const newLocation = {
+        name: req.body.name,
+        location: req.body.location,
+        description: req.body.description
+      };
+
+      profile.locationsOfInterest.unshift(newLocation);
+
+      profile.save().then(profile => res.json(profile));
+    })
+    .catch(() => {
+      res.status(404).json({ error: "No profile found" });
+    });
+});
+
 // @route    GET api/profile
 // @desc     Fetches all profiles.
 // @access   Private
