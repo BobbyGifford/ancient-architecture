@@ -49,7 +49,7 @@ router.post("/", requireLogin, (req, res) => {
   });
 });
 
-// @route    POST api/profile/locationsofinterest
+// @route    POST api/profile/locationofinterest
 // @desc     Adds locations of interest.
 // @access   Private
 
@@ -106,6 +106,10 @@ router.get("/user/:user_id", requireLogin, (req, res) => {
       res.status(404).json({ error: "No profile found for that user" });
     });
 });
+
+// @route    DELETE api/profile/locationofinterest/locationId
+// @desc     Fetches profile by user id.
+// @access   Private
 
 router.delete("/locationofinterest/:locationId", requireLogin, (req, res) => {
   Profile.findOne({ user: req.user.id }).then(profile => {
