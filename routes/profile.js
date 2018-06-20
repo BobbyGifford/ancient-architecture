@@ -53,7 +53,7 @@ router.post("/", requireLogin, (req, res) => {
 // @desc     Adds locations of interest.
 // @access   Private
 
-router.post("/locationsofinterest", requireLogin, (req, res) => {
+router.post("/locationofinterest", requireLogin, (req, res) => {
   Profile.findOne({ user: req.user.id })
     .then(profile => {
       const newLocation = {
@@ -95,6 +95,7 @@ router.get("/all", requireLogin, (req, res) => {
 
 router.get("/user/:user_id", requireLogin, (req, res) => {
   Profile.findOne({ user: req.params.user_id })
+    .populate("user", ["displayName"])
     .then(profile => {
       if (!profile) {
         res.status(404).json({ error: "No profile found" });
@@ -104,6 +105,26 @@ router.get("/user/:user_id", requireLogin, (req, res) => {
     .catch(() => {
       res.status(404).json({ error: "No profile found for that user" });
     });
+});
+
+router.delete("/locationofinterest/:locationId", requireLogin, (req, res) => {
+  Profile.findOne({ user: req.user.id }).then(profile => {
+    // Get remove index
+    const removeIndex = profile.locationsOfInterest
+      .map(item => item.id)
+      .indexOf(req.params.locationId);
+
+      // Slice of of locations array
+      profile.locationsOfInterest.splice(removeIndex, 1);
+
+      // Save
+      profile.save().then(profile => {
+        res.json(profile)
+      })
+  })
+  .catch(error => {
+    res.status(404).json(error)
+  })
 });
 
 module.exports = router;
