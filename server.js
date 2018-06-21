@@ -9,6 +9,7 @@ require("./services/passport");
 
 require("./models/User");
 const profile = require("./routes/profile");
+const post = require("./models/Post");
 
 const app = express();
 
@@ -36,8 +37,9 @@ app.get("/", (req, res) => {
 // Routes
 require("./routes/authRoutes")(app);
 app.use("/api/profile", profile);
+app.use("/api/posts", post);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  `Server running on port ${PORT}`
+  `Server running on port ${PORT}`;
 });
