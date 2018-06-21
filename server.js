@@ -9,7 +9,7 @@ require("./services/passport");
 
 require("./models/User");
 const profile = require("./routes/profile");
-const post = require("./models/Post");
+const post = require("./routes/posts");
 
 const app = express();
 

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const requireLogin = require("../middleware/requireLogin");
 
 // Post model
 const Post = require("../models/Post");
@@ -12,8 +13,8 @@ const Profile = require("../models/Profile");
 // @desc    Tests post route
 // @access  Public
 
-router.get("/", (req, res) => {
-  res.send({ message: "post router works" });
+router.get("/", requireLogin, (req, res) => {
+  res.send({ message: "post router works with auth also" });
 });
 
 module.exports = router;
