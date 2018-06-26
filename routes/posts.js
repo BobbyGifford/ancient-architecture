@@ -30,8 +30,17 @@ router.post("/", requireLogin, (req, res) => {
   if (req.body.wikipedia) newPost.media.wikipedia = req.body.wikipedia;
 
   new Post(newPost).save().then(profile => {
-      res.json(profile)
+    res.json(profile)
   })
 });
+
+router.get('/all', requireLogin, (req, res) => {
+  Post.find().populate("user", ["displayName", "googleImg"]).then((posts) => {
+    if (!posts) {
+      res.status(404).json("No posts found")
+    }
+    res.status(200).json(posts)
+  })
+})
 
 module.exports = router;
