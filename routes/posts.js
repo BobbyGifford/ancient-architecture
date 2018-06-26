@@ -34,6 +34,10 @@ router.post("/", requireLogin, (req, res) => {
   })
 });
 
+// @route   GET api/posts/all
+// @desc    Fetches all posts
+// @access  Private
+
 router.get('/all', requireLogin, (req, res) => {
   Post.find().populate("user", ["displayName", "googleImg"]).then((posts) => {
     if (!posts) {
