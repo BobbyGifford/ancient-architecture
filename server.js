@@ -28,11 +28,9 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
-
-app.get("/", (req, res) => {
-  res.send({ message: "home page" });
-});
+// app.get("/", (req, res) => {
+//   res.send({ message: "home page" });
+// });
 
 // Routes
 require("./routes/authRoutes")(app);

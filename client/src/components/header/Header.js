@@ -1,18 +1,30 @@
-import React  from 'react';
+import React, { Component } from 'react';
 
-const Header = () => (
-        <div>
-            <nav>
-                <div className="nav-wrapper #263238 blue-grey darken-4">
-                    <a href="#" className="brand-logo center">Ancient Architecture</a>
-                    <ul id="nav-mobile" className="left hide-on-med-and-down">
-                        <li><a href="sass.html">Sass</a></li>
-                        <li><a href="badges.html">Components</a></li>
-                        <li><a href="collapsible.html">JavaScript</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-)
+
+class Header extends Component {
+    renderContent() {
+        return (
+            <div>
+
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <nav>
+                    <div className="nav-wrapper #263238 blue-grey darken-4">
+                        <a href="#" className="brand-logo center">Ancient Architecture</a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down" style={{ margin: " 0 10px" }} >
+                            <li className="mr 2" ><a href="/auth/google">Login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        )
+    }
+}
+
 
 export default Header;
