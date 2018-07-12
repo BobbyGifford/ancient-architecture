@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import BasicInputs from './forms/basicInputs';
 
@@ -19,11 +20,7 @@ class Profile extends Component {
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSocialInputChange = this.handleSocialInputChange.bind(this)
-    }
-
-    componentDidUpdate() {
-        console.log(this.state);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
@@ -40,14 +37,20 @@ class Profile extends Component {
 
         social[name] = value
         this.setState({ social })
-        console.log(this.state);
+    }
+
+    async handleSubmit(event) {
+        event.preventDefault();
+
+        const result = await axios.post("/api/profile/", this.state);
+        console.log(result.data);
     }
 
     render() {
         return (
             <div className="container">
                 <h3>Please Create your profile</h3>
-                <form>
+                <form onSubmit={this.handleSubmit} >
                     <BasicInputs label="Where are you from?" name="fromWhere" type="text" onChange={this.handleInputChange} />
                     <BasicInputs label="Where are you currently?" name="livingWhere" type="text" onChange={this.handleInputChange} />
                     <BasicInputs label="Describe a bit about yourself" name="description" type="text" onChange={this.handleInputChange} />
