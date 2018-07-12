@@ -5,19 +5,22 @@ import { Link } from "react-router-dom";
 class Header extends Component {
     renderContent() {
         if (this.props.auth === null || this.props.auth === undefined) {
-            return <li className="mr 2" ><a href="/auth/google">Login</a></li>
+            return <li className="nav-item" ><a className="nav-link" href="/auth/google">Login</a></li>
         } else {
-            return <li className="mr 2"><Link to="/profile">{this.props.auth.displayName}</Link></li>
+            return <li className="nav-item"><Link className="nav-link" to="/profile">{this.props.auth.displayName}</Link></li>
         }
     }
 
     render() {
         return (
             <div>
-                <nav>
-                    <div className="nav-wrapper #263238 blue-grey darken-4  hide-on-med-and-down">
-                        <Link to="/" className="brand-logo center">Ancient Architecture</Link>
-                        <ul id="nav-mobile" className="right" style={{ margin: " 0 10px" }} >
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <Link to="/" className="navbar-brand" href="#">Ancient Architecture</Link>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul className="navbar-nav">
                             {this.renderContent()}
                         </ul>
                     </div>

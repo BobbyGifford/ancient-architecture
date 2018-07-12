@@ -6,11 +6,11 @@ class Home extends Component {
         console.log(this.props.auth)
         return (
             (!this.props.auth ?
-                <div className="center">
+                <div className="text-center">
                     <h1>You're not logged in.</h1>
                 </div>
                 :
-                <div className="center" >
+                <div className="text-center" >
                     <h1>Welcome</h1>
                     <h3>{this.props.auth.displayName}</h3>
                 </div>

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import BasicInputs from './forms/basicInputs';
+
 class Profile extends Component {
     constructor(props) {
         super(props)
@@ -8,6 +10,7 @@ class Profile extends Component {
             livingWhere: "",
             description: "",
             social: {
+                youtube: "",
                 twitter: "",
                 facebook: "",
                 linkedin: "",
@@ -42,38 +45,20 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
+                <h3>Please Create your profile</h3>
                 <form>
-                    <label>
-                        Where are you from?
-                    </label>
-                    <input
-                        name="fromWhere"
-                        type="text"
-                        onChange={this.handleInputChange} />
-                    <label>
-                        Where are you currently?
-                    </label>
-                    <input
-                        name="livingWhere"
-                        type="text"
-                        onChange={this.handleInputChange} />
-                    <label>
-                        Describe a bit about yourself
-                    </label>
-
-                    <input
-                        name="description"
-                        type="text"
-                        onChange={this.handleInputChange} />
-                    <label>
-                        Twitter
-                    </label>
-                    <input
-                        name="twitter"
-                        type="url"
-                        onChange={this.handleSocialInputChange} />
-
+                    <BasicInputs label="Where are you from?" name="fromWhere" type="text" onChange={this.handleInputChange} />
+                    <BasicInputs label="Where are you currently?" name="livingWhere" type="text" onChange={this.handleInputChange} />
+                    <BasicInputs label="Describe a bit about yourself" name="description" type="text" onChange={this.handleInputChange} />
+                    <div className="col-sm-6 offset-sm-3">
+                        <BasicInputs label="Youtube" name="youtube" type="url" onChange={this.handleSocialInputChange} />
+                        <BasicInputs label="Twitter" name="twitter" type="url" onChange={this.handleSocialInputChange} />
+                        <BasicInputs label="Facebook" name="facebook" type="url" onChange={this.handleSocialInputChange} />
+                        <BasicInputs label="Linkedin" name="linkedin" type="url" onChange={this.handleSocialInputChange} />
+                        <BasicInputs label="Instagram" name="instagram" type="url" onChange={this.handleSocialInputChange} />
+                    </div>
+                    <input type="submit" className="col-sm-6 offset-sm-3 btn btn-success" />
                 </form>
             </div>
         )
