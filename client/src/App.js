@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from "react-router-dom";
 import * as actions from './actions';
+import { connect } from 'react-redux';
+
+// Components
 import Header from './components/header/Header';
 import Home from './components/home/Home';
-import { connect } from 'react-redux';
+import Profile from './components/profile/Profile'
 
 class App extends Component {
   componentDidMount() {
@@ -16,6 +19,7 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path="/" component={Home} />
+          <Route path="/profile" component={Profile} />
         </div>
       </BrowserRouter>
     );

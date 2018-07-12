@@ -7,7 +7,7 @@ class Header extends Component {
         if (this.props.auth === null || this.props.auth === undefined) {
             return <li className="mr 2" ><a href="/auth/google">Login</a></li>
         } else {
-            return <li className="mr 2">{this.props.auth.displayName}</li>
+            return <li className="mr 2"><Link to="/profile">{this.props.auth.displayName}</Link></li>
         }
     }
 
@@ -15,9 +15,9 @@ class Header extends Component {
         return (
             <div>
                 <nav>
-                    <div className="nav-wrapper #263238 blue-grey darken-4">
-                        <a href="#" className="brand-logo center">Ancient Architecture</a>
-                        <ul id="nav-mobile" className="right hide-on-med-and-down" style={{ margin: " 0 10px" }} >
+                    <div className="nav-wrapper #263238 blue-grey darken-4  hide-on-med-and-down">
+                        <Link to="/" className="brand-logo center">Ancient Architecture</Link>
+                        <ul id="nav-mobile" className="right" style={{ margin: " 0 10px" }} >
                             {this.renderContent()}
                         </ul>
                     </div>
