@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 class Header extends Component {
     renderContent() {
-        return (
-            <div>
-
-            </div>
-        )
+        if (this.props.auth === null || this.props.auth === undefined) {
+            return <li className="mr 2" ><a href="/auth/google">Login</a></li>
+        } else {
+            return <li className="mr 2">{this.props.auth.displayName}</li>
+        }
     }
 
     render() {
@@ -17,7 +18,7 @@ class Header extends Component {
                     <div className="nav-wrapper #263238 blue-grey darken-4">
                         <a href="#" className="brand-logo center">Ancient Architecture</a>
                         <ul id="nav-mobile" className="right hide-on-med-and-down" style={{ margin: " 0 10px" }} >
-                            <li className="mr 2" ><a href="/auth/google">Login</a></li>
+                            {this.renderContent()}
                         </ul>
                     </div>
                 </nav>
@@ -26,5 +27,9 @@ class Header extends Component {
     }
 }
 
+function mapStateToProps({ auth }) {
+    return { auth }
+}
 
-export default Header;
+
+export default connect(mapStateToProps)(Header);
