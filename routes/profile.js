@@ -95,7 +95,7 @@ router.get("/all", requireLogin, (req, res) => {
 
 router.get("/user/", requireLogin, (req, res) => {
   Profile.findOne({ user: req.user.id })
-    .populate("user", ["displayName"])
+    .populate("user", ["displayName", "googleImg"])
     .then(profile => {
       if (!profile) {
         res.status(404).json({ error: "No profile found" })

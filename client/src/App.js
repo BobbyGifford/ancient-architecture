@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Profile from './components/profile/Profile'
+import ProfileForm from './components/profile/ProfileForm'
 
 class App extends Component {
   componentDidMount() {
@@ -20,7 +21,8 @@ class App extends Component {
         <div>
           <Header />
           <Route exact path="/" component={Home} />
-          <Route path="/profile" component={Profile} />
+          <Route path='/profile' component={Profile} />
+          <Route path="/profileform" component={ProfileForm} />
         </div>
       </BrowserRouter>
     );
