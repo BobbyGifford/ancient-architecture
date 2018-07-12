@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 class Home extends Component {
     render() {
         console.log(this.props.auth)
+        console.log(this.props.profile);
         return (
             (!this.props.auth ?
                 <div className="text-center">
@@ -19,8 +20,8 @@ class Home extends Component {
     }
 }
 
-function mapStateToProps({ auth }) {
-    return { auth };
+function mapStateToProps({ auth, profile }) {
+    return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Home);

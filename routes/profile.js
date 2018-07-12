@@ -89,6 +89,24 @@ router.get("/all", requireLogin, (req, res) => {
     });
 });
 
+// @route    GET api/profile/user
+// @desc     Fetches current user's profile.
+// @access   Private
+
+router.get("/user/", requireLogin, (req, res) => {
+  Profile.findOne({ user: req.user.id })
+    .populate("user", ["displayName"])
+    .then(profile => {
+      if (!profile) {
+        res.status(404).json({ error: "No profile found" })
+      }
+      res.json(profile)
+    })
+    .catch(() => {
+      res.status(404).json({ error: "no profile found for that user" })
+    })
+})
+
 // @route    GET api/profile/user/user_id
 // @desc     Fetches profile by user id.
 // @access   Private
@@ -118,17 +136,17 @@ router.delete("/locationofinterest/:locationId", requireLogin, (req, res) => {
       .map(item => item.id)
       .indexOf(req.params.locationId);
 
-      // Slice of of locations array
-      profile.locationsOfInterest.splice(removeIndex, 1);
+    // Slice of of locations array
+    profile.locationsOfInterest.splice(removeIndex, 1);
 
-      // Save
-      profile.save().then(profile => {
-        res.json(profile)
-      })
+    // Save
+    profile.save().then(profile => {
+      res.json(profile)
+    })
   })
-  .catch(error => {
-    res.status(404).json(error)
-  })
+    .catch(error => {
+      res.status(404).json(error)
+    })
 });
 
 module.exports = router;

@@ -11,6 +11,7 @@ import Profile from './components/profile/Profile'
 class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.props.fetchProfile();
   }
 
   render() {

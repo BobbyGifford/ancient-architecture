@@ -50,8 +50,8 @@ router.get('/', requireLogin, (req, res) => {
     })
 })
 
-// @route   GET api/posts/all
-// @desc    Fetches all posts
+// @route   GET api/posts/:id
+// @desc    Fetch post by id
 // @access  Private
 
 router.get('/:id', requireLogin, (req, res) => {
