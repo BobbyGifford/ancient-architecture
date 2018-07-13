@@ -7,7 +7,12 @@ class Header extends Component {
         if (this.props.auth === null || this.props.auth === undefined) {
             return <li className="nav-item" ><a className="nav-link" href="/auth/google">Login</a></li>
         } else {
-            return <li className="nav-item"><Link className="nav-link" to="/profile">{this.props.auth.displayName}</Link></li>
+            return (
+                <ul className="navbar-nav">
+                    <li className="nav-item"><Link className="nav-link" to="/profile">{this.props.auth.displayName}</Link></li>
+                    <li className="nav-item"><Link className="nav-link" to="/posts">Posts</Link></li>
+                </ul>
+            )
         }
     }
 
@@ -20,9 +25,7 @@ class Header extends Component {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul className="navbar-nav">
-                            {this.renderContent()}
-                        </ul>
+                        {this.renderContent()}
                     </div>
                 </nav>
             </div>
