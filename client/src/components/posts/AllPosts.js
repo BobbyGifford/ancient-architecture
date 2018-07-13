@@ -21,18 +21,18 @@ class Posts extends Component {
                 this.props.posts.map((post => {
                     return (
                         <div key={post._id}>
-
                             <div className="card bg-dark text-white text-center">
                                 <h5 className="card-header">{post.title}</h5>
                                 <div className="card-body">
                                     <h5 className="card-title">{post.location}</h5>
                                     <p className="card-text">{post.description}</p>
-                                    <Link to="/" className="btn btn-primary">Go somewhere</Link>
+                                    <Link to={"/post/" + post._id} className="btn btn-primary">View Post</Link>
                                 </div>
                                 <div className="card-footer text-muted">
                                     Posted by: {post.user.displayName} <img className="rounded-circle" alt="a" src={post.user.googleImg} />
                                 </div>
                             </div>
+                            <br />
                         </div>
                     )
                 }))
@@ -44,6 +44,9 @@ class Posts extends Component {
         return (
             <div className="container text-center">
                 <h1>Posts</h1>
+                <button className="btn btn-success my-2">
+                    Add Post
+                </button>
                 {this.renderPosts()}
             </div>
         )

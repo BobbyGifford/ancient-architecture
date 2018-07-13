@@ -56,6 +56,7 @@ router.get('/', requireLogin, (req, res) => {
 
 router.get('/:id', requireLogin, (req, res) => {
   Post.findById(req.params.id)
+    .populate("user", ["displayName", "googleImg"])
     .then((post) => {
       res.json(post)
     })

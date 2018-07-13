@@ -10,7 +10,8 @@ import Home from './components/home/Home';
 import Profile from './components/profile/Profile'
 import ProfileForm from './components/profile/forms/profileForm/ProfileForm'
 import LocationForm from './components/profile/forms/locationForm/LocationForm'
-import Posts from './components/posts/Posts'
+import Posts from './components/posts/AllPosts'
+import Post from './components/posts/Post'
 
 class App extends Component {
   componentDidMount() {
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/profileform" component={ProfileForm} />
           <Route path='/locationform' component={LocationForm} />
           <Route path='/posts' component={Posts} />
+          <Route path='/post/:id' component={Post} />
         </div>
       </Router>
     );
