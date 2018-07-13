@@ -44,9 +44,9 @@ class Posts extends Component {
         return (
             <div className="container text-center">
                 <h1>Posts</h1>
-                <button className="btn btn-success my-2">
+                <Link to="/addpost" className="btn btn-success my-2">
                     Add Post
-                </button>
+                </Link>
                 {this.renderPosts()}
             </div>
         )

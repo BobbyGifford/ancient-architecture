@@ -20,7 +20,7 @@ class Header extends Component {
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <Link to="/" className="navbar-brand" href="#">Ancient Architecture</Link>
+                    <Link to="/posts" className="navbar-brand">Ancient Architecture</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
