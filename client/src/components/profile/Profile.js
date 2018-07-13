@@ -3,6 +3,8 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 
 import ToProfileForm from "./helperButtons/ToProfileForm";
+import PersonalDetails from "./profileDetails/PersonalDetails";
+import LocationList from "./profileDetails/LocationList";
 
 class Profile extends Component {
 
@@ -23,12 +25,14 @@ class Profile extends Component {
                             <ToProfileForm />
                         </div>
                     </div>
-                    <div>
-                        From: {this.props.profile.fromWhere}
-                        <br />
-                        Currently in: {this.props.profile.livingWhere}
-                        <br />
-                        About: {this.props.profile.description}
+                    <PersonalDetails
+                        from={this.props.profile.fromWhere}
+                        current={this.props.profile.livingWhere}
+                        description={this.props.profile.description} />
+
+                    <div className="mt-5">
+                        <h5>Locations of interest</h5>
+                        <LocationList locationList={this.props.profile.locationsOfInterest} />
                     </div>
                 </div>
             )
