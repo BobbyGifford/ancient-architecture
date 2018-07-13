@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LocationList = ({ locationList }) => {
-    if (locationList === null || locationList === undefined) {
+    if (locationList === null || locationList === undefined || locationList.length === 0) {
         return (
-            <div>Add location of interest</div>
+            <Link to="/locationform">Add a location of interest</Link>
         )
     } else {
         return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import BasicInputs from './forms/basicInputs';
+import BasicInputs from './basicInputs';
 
 class Profile extends Component {
     constructor(props) {
