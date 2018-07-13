@@ -13,6 +13,8 @@ class LocationList extends Component {
 
     async handleDelete(id) {
         const result = await axios.delete("/api/profile/locationofinterest/" + id)
+        console.log("Deleted: " + result);
+
         this.props.fetchProfile()
         history.push("/")
     }

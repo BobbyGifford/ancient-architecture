@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
     render() {
-        console.log(this.props.auth)
-        console.log(this.props.profile);
+        console.log("Auth:", this.props.auth)
+        console.log("Profile:", this.props.profile);
         return (
             (!this.props.auth ?
                 <div className="text-center">

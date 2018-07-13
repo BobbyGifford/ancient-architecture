@@ -16,12 +16,13 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchProfile();
+    this.props.fetchPosts();
   }
 
   render() {
     return (
       <Router history={history}>
-        <div>
+        <div className="bg-dark text-light" style={{ minHeight: "100vh" }}>
           <Header />
           <Route exact path="/" component={Home} />
           <Route path='/profile' component={Profile} />
