@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import history from "../../history"
 
 class Post extends Component {
     constructor(props) {
@@ -9,13 +12,21 @@ class Post extends Component {
     }
 
     async componentDidMount() {
+        console.log("Auth:", this.props.auth)
         const res = await axios.get("/api/posts/" + this.props.match.params.id)
         console.log(res.data);
+        console.log(this.props.auth)
         this.setState({ post: res.data })
     }
 
     componentDidUpdate() {
         console.log(this.state)
+    }
+
+    async removePost(id) {
+        const res = await axios.delete("/api/posts/" + id)
+        console.log(res.data)
+        history.push("/posts")
     }
 
     renderContent() {
@@ -46,6 +57,12 @@ class Post extends Component {
                     <p>{this.state.post.description}</p>
                     <div className="text-center">
                         Posted by: {this.state.post.user.displayName} <img className="rounded-circle" alt="a" src={this.state.post.user.googleImg} />
+                        <br />
+                        {/* Delete Button Here */}
+                        {
+                            this.props.auth._id === this.state.post.user._id ? <div><button onClick={() => this.removePost(this.state.post._id)} className="btn btn-danger">Delete Post</button></div> : null
+                        }
+                        {/*  */}
                     </div>
                 </div>
             )
@@ -61,4 +78,8 @@ class Post extends Component {
     }
 }
 
-export default Post;
+function mapStateToProps({ auth, profile }) {
+    return { auth, profile }
+}
+
+export default connect(mapStateToProps, actions)(Post);
