@@ -2,7 +2,7 @@ const passport = require("passport");
 
 module.exports = app => {
   app.get(
-    "/auth/google",
+    "/api/auth/google",
     passport.authenticate("google", {
       scope: ["profile", "email"],
       prompt: "select_account"
