@@ -9,7 +9,7 @@ class Home extends Component {
             (!this.props.auth ?
                 <div className="text-center">
                     <h1>You're not logged in.</h1>
-                    <a className="btn btn-success" href="/auth/google">Login with Google</a>
+                    <a className="btn btn-success" href="http://localhost:5000/auth/google">Login with Google</a>
                 </div>
                 :
                 <div className="text-center" >
