@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class Header extends Component {
     renderContent() {
         if (this.props.auth === null || this.props.auth === undefined || this.props.auth === false) {
-            return <a className="btn btn-success" href="/auth/google">Login</a>
+            return <a className="btn btn-success" href="/auth/google/">Login</a>
         } else {
             return (
                 <ul className="navbar-nav mr-auto">
