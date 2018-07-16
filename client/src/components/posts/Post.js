@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import history from "../../history"
 
+import PixabayGallery from "./pixabayGallery/PixabayGallery"
+
 class Post extends Component {
     constructor(props) {
         super(props)
@@ -15,7 +17,6 @@ class Post extends Component {
         console.log("Auth:", this.props.auth)
         const res = await axios.get("/api/posts/" + this.props.match.params.id)
         console.log(res.data);
-        console.log(this.props.auth)
         this.setState({ post: res.data })
     }
 
@@ -55,6 +56,19 @@ class Post extends Component {
 
                     </ul>
                     <p>{this.state.post.description}</p>
+
+                    {/* Delete Button Here */}
+                    {
+                        this.props.auth._id === this.state.post.user._id ? <div className="text-center mb-2"><button onClick={() => this.removePost(this.state.post._id)} className="btn btn-danger">Delete Post</button></div> : null
+                    }
+                    {/*  */}
+
+
+                    {/* Gallery here */}
+
+                    <PixabayGallery title={this.state.post.title} />
+
+                    {/* _____________ */}
                     <div className="text-center">
                         Posted by: {this.state.post.user.displayName} <img className="rounded-circle" alt="a" src={this.state.post.user.googleImg} />
                         <br />
