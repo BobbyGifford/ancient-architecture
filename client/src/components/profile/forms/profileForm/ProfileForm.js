@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import BasicInputs from './basicInputs';
+import { connect } from 'react-redux';
+import history from '../../../../history';
+import * as actions from '../../../../actions';
 
 class Profile extends Component {
     constructor(props) {
@@ -43,6 +46,8 @@ class Profile extends Component {
         event.preventDefault();
 
         const result = await axios.post("/api/profile/", this.state);
+        this.props.fetchProfile()
+        history.push('/profile')
         console.log(result.data);
     }
 
@@ -68,4 +73,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default connect(null, actions)(Profile)

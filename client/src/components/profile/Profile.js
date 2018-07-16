@@ -16,7 +16,11 @@ class Profile extends Component {
 
     renderContent() {
         if (this.props.profile === null || this.props.profile === undefined) {
-            return <h1>Loading</h1>
+            return (
+                <div className="text-center">
+                    <Link className="text-center btn btn-info" to="/profileform">Create Profile</Link>
+                </div>
+            )
         } else {
             return (
                 <div className="col-sm-6 offset-sm-4">
