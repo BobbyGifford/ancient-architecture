@@ -1,111 +1,133 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import history from "../../history"
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
+import history from "../../history";
+import { Link } from "react-router-dom";
 
-import PixabayGallery from "./pixabayGallery/PixabayGallery"
+import PixabayGallery from "./pixabayGallery/PixabayGallery";
 
 class Post extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props);
 
-        this.state = {}
-    }
+    this.state = {};
+  }
 
-    async componentDidMount() {
-        console.log("Auth:", this.props.auth)
-        const res = await axios.get("/api/posts/" + this.props.match.params.id)
-        console.log(res.data);
-        this.setState({ post: res.data })
-    }
+  async componentDidMount() {
+    console.log("Auth:", this.props.auth);
+    const res = await axios.get("/api/posts/" + this.props.match.params.id);
+    console.log(res.data);
+    this.setState({
+      post: res.data
+    });
+  }
 
-    componentDidUpdate() {
-        console.log(this.state)
-    }
+  componentDidUpdate() {
+    console.log(this.state);
+  }
 
-    async removePost(id) {
-        const res = await axios.delete("/api/posts/" + id)
-        console.log(res.data)
-        history.push("/posts")
-    }
+  async removePost(id) {
+    const res = await axios.delete("/api/posts/" + id);
+    console.log(res.data);
+    history.push("/posts");
+  }
 
-    renderContent() {
-        if (this.state.post === null || this.state.post === undefined) {
-            return (
-                <h1 className="text-center">Loading</h1>
-            )
-        } else {
-            return (
-                <div>
-                    <div className="text-center">
-                        <h3>{this.state.post.title}</h3>
-                        <h5>{this.state.post.location}</h5>
-                    </div>
-                    <br />
-                    <ul className="list-group">
-                        {
-                            this.state.post.keyfeatures.map((feature) => {
-                                return (
-                                    <li key={feature} style={{ marginLeft: "28vw" }}>
-                                        {feature}
-                                    </li>
-                                )
-                            })
-                        }
-
-                    </ul>
-                    <p>{this.state.post.description}</p>
-
-                    {/* Delete Button Here */}
-                    {
-                        this.props.auth._id === this.state.post.user._id ? <div className="text-center mb-2"><button onClick={() => this.removePost(this.state.post._id)} className="btn btn-danger">Delete Post</button></div> : null
-                    }
-                    {/*  */}
-
-
-                    {/* Gallery here */}
-
-                    <PixabayGallery title={this.state.post.title} />
-
-                    {/* _____________ */}
-                    <div className="text-center">
-                        Posted by: {this.state.post.user.displayName} <img className="rounded-circle" alt="a" src={this.state.post.user.googleImg} />
-                        <br />
-                        {/* Delete Button Here */}
-                        {
-                            this.props.auth._id === this.state.post.user._id ? <div><button onClick={() => this.removePost(this.state.post._id)} className="btn btn-danger">Delete Post</button></div> : null
-                        }
-                        {/*  */}
-                        <br />
-                        {this.state.post.comments.map((comment) => {
-                            return (
-                                <div>
-                                    {comment.text}
-                                    <br />
-                                    By: {comment.user.displayName} <img className="rounded-circle" alt="profile" src={comment.user.googleImg} />
-                                </div>
-                            )
-                        })}
-                        <Link to={"/addcomment/" + this.props.match.params.id} className="btn btn-info">Add Comment</Link>
-                    </div>
-                </div>
-            )
-        }
-    }
-
-    render() {
-        return (
-            <div className="container">
-                {this.renderContent()}
+  renderContent() {
+    if (this.state.post === null || this.state.post === undefined) {
+      return <h1 className="text-center"> Loading </h1>;
+    } else {
+      return (
+        <div>
+          <div className="text-center">
+            <h3> {this.state.post.title} </h3>
+            <h5> {this.state.post.location} </h5>
+          </div>
+          <br />
+          <ul className="list-group">
+            {this.state.post.keyfeatures.map(feature => {
+              return (
+                <li
+                  key={feature}
+                  style={{
+                    marginLeft: "28vw"
+                  }}
+                >
+                  {feature}
+                </li>
+              );
+            })}
+          </ul>
+          <p> {this.state.post.description} </p> {/* Delete Button Here */}
+          {this.props.auth._id === this.state.post.user._id ? (
+            <div className="text-center mb-2">
+              <button
+                onClick={() => this.removePost(this.state.post._id)}
+                className="btn btn-danger"
+              >
+                Delete Post
+              </button>
             </div>
-        )
+          ) : null}
+          {/*  */} {/* Gallery here */}
+          <PixabayGallery title={this.state.post.title} /> {/* _____________ */}
+          <div className="text-center">
+            Posted by: {this.state.post.user.displayName}
+            <img
+              className="rounded-circle"
+              alt="a"
+              src={this.state.post.user.googleImg}
+            />
+            <br /> {/* Delete Button Here */}
+            {this.props.auth._id === this.state.post.user._id ? (
+              <div>
+                <button
+                  onClick={() => this.removePost(this.state.post._id)}
+                  className="btn btn-danger"
+                >
+                  Delete Post
+                </button>
+              </div>
+            ) : null}
+            {/*  */} <br />
+            {this.state.post.comments.map(comment => {
+              return (
+                <div>
+                  {comment.text} <br />
+                  By: {comment.user.displayName}
+                  <img
+                    className="rounded-circle"
+                    alt="profile"
+                    src={comment.user.googleImg}
+                  />
+                </div>
+              );
+            })}
+            <Link
+              to={"/addcomment/" + this.props.match.params.id}
+              className="btn btn-info"
+            >
+              Add Comment
+            </Link>
+          </div>
+        </div>
+      );
     }
+  }
+
+  render() {
+    return <div className="container"> {this.renderContent()} </div>;
+  }
 }
 
 function mapStateToProps({ auth, profile }) {
-    return { auth, profile }
+  return {
+    auth,
+    profile
+  };
 }
 
-export default connect(mapStateToProps, actions)(Post);
+export default connect(
+  mapStateToProps,
+  actions
+)(Post);
