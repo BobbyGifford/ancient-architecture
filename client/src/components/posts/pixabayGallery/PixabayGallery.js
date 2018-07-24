@@ -12,8 +12,8 @@ class PixabayGallery extends Component {
     async componentDidMount() {
         const res = await axios.get("https://pixabay.com/api/?key=" + api.key + "&q=" + this.props.title + "&image_type=photo")
         const formattedData = res.data.hits.slice(1, 16);
-        console.log(res.data.hits[0].previewURL)
-        console.log(formattedData)
+        // console.log(res.data.hits[0].previewURL)
+        // console.log(formattedData)
         this.setState({ formattedData })
     }
 
@@ -21,7 +21,7 @@ class PixabayGallery extends Component {
         return (
             this.state.formattedData.map((pic) => {
                 return (
-                    <img key={pic.largeImageURL} src={pic.largeImageURL} alt={pic.largeImageURL} />
+                    <img style={{ maxHeight: "20rem" }} key={pic.largeImageURL} src={pic.largeImageURL} alt={pic.largeImageURL} />
                 )
             })
         )

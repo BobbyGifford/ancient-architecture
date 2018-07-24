@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import BasicInputs from './basicInputs';
 import axios from 'axios';
+import * as actions from "../../../actions"
+import { connect } from 'react-redux';
 import history from '../../../history';
 
 class AddPost extends Component {
@@ -11,6 +13,10 @@ class AddPost extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchPosts()
     }
 
     handleInputChange(event) {
@@ -46,4 +52,8 @@ class AddPost extends Component {
     }
 }
 
-export default AddPost;
+function mapStateToProps({ posts }) {
+    return { posts }
+}
+
+export default connect(mapStateToProps, actions)(AddPost);

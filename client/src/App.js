@@ -13,6 +13,8 @@ import LocationForm from './components/profile/forms/locationForm/LocationForm'
 import Posts from './components/posts/AllPosts'
 import Post from './components/posts/Post'
 import AddPost from './components/posts/forms/AddPost';
+import AddComment from './components/posts/AddComment'
+import Confirnmation from './components/posts/Confirmation'
 
 class App extends Component {
   componentDidMount() {
@@ -33,6 +35,8 @@ class App extends Component {
           <Route path='/posts' component={Posts} />
           <Route path='/post/:id' component={Post} />
           <Route path='/addpost' component={AddPost} />
+          <Route path='/addcomment/:id' component={AddComment} />
+          <Route path='/confirmation' component={Confirnmation} />
         </div>
       </Router>
     );

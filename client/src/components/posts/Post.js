@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import history from "../../history"
+import { Link } from 'react-router-dom';
 
 import PixabayGallery from "./pixabayGallery/PixabayGallery"
 
@@ -77,6 +78,8 @@ class Post extends Component {
                             this.props.auth._id === this.state.post.user._id ? <div><button onClick={() => this.removePost(this.state.post._id)} className="btn btn-danger">Delete Post</button></div> : null
                         }
                         {/*  */}
+                        <br />
+                        <Link to={"/addcomment/" + this.props.match.params.id} className="btn btn-info">Add Comment</Link>
                     </div>
                 </div>
             )
