@@ -79,6 +79,15 @@ class Post extends Component {
                         }
                         {/*  */}
                         <br />
+                        {this.state.post.comments.map((comment) => {
+                            return (
+                                <div>
+                                    {comment.text}
+                                    <br />
+                                    By: {comment.user.displayName} <img className="rounded-circle" alt="profile" src={comment.user.googleImg} />
+                                </div>
+                            )
+                        })}
                         <Link to={"/addcomment/" + this.props.match.params.id} className="btn btn-info">Add Comment</Link>
                     </div>
                 </div>
