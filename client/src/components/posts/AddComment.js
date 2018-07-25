@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import history from "../../history";
-import axios from "axios";
-import * as actions from "../../actions";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import history from '../../history';
+import axios from 'axios';
+import * as actions from '../../actions';
+import { connect } from 'react-redux';
 
 class AddComment extends Component {
   constructor(props) {
@@ -23,9 +23,9 @@ class AddComment extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    axios.post("/api/posts/comment/" + this.props.match.params.id, this.state);
+    axios.post('/api/posts/comment/' + this.props.match.params.id, this.state);
     this.props.fetchPosts();
-    history.push("/confirmation");
+    history.push('/confirmation');
   }
 
   render() {

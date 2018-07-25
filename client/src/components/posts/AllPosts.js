@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../actions";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import { Link } from 'react-router-dom';
 
 class Posts extends Component {
   componentDidMount() {
@@ -27,12 +27,12 @@ class Posts extends Component {
                 <p className="card-text">{post.description}</p>
                 {/* {this.state ? <img className="mb-3" src={this.state[post.title]} /> : null} */}
                 <br />
-                <Link to={"/post/" + post._id} className="btn btn-primary">
+                <Link to={'/post/' + post._id} className="btn btn-primary">
                   View Post
                 </Link>
               </div>
               <div className="card-footer text-muted">
-                Posted by: {post.user.displayName}{" "}
+                Posted by: {post.user.displayName}{' '}
                 <img
                   className="rounded-circle"
                   alt="a"

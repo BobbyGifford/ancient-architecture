@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const Confirmation = () => {
-  return <div>alksdjflakjsdfl;saksjs</div>;
+  return <div>You're comment was posted.</div>;
 };
 
 export default Confirmation;

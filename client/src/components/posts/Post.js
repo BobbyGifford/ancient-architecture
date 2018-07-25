@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { connect } from "react-redux";
-import * as actions from "../../actions";
-import history from "../../history";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import history from '../../history';
+import { Link } from 'react-router-dom';
 
-import PixabayGallery from "./pixabayGallery/PixabayGallery";
+import PixabayGallery from './pixabayGallery/PixabayGallery';
+import Comment from './comments/Comment';
 
 class Post extends Component {
   constructor(props) {
@@ -15,11 +16,11 @@ class Post extends Component {
   }
 
   async componentDidMount() {
-    console.log("Auth:", this.props.auth);
-    const res = await axios.get("/api/posts/" + this.props.match.params.id);
+    console.log('Auth:', this.props.auth);
+    const res = await axios.get('/api/posts/' + this.props.match.params.id);
     console.log(res.data);
     this.setState({
-      post: res.data
+      post: res.data,
     });
   }
 
@@ -28,9 +29,9 @@ class Post extends Component {
   }
 
   async removePost(id) {
-    const res = await axios.delete("/api/posts/" + id);
+    const res = await axios.delete('/api/posts/' + id);
     console.log(res.data);
-    history.push("/posts");
+    history.push('/posts');
   }
 
   renderContent() {
@@ -50,7 +51,7 @@ class Post extends Component {
                 <li
                   key={feature}
                   style={{
-                    marginLeft: "28vw"
+                    marginLeft: '28vw',
                   }}
                 >
                   {feature}
@@ -58,7 +59,15 @@ class Post extends Component {
               );
             })}
           </ul>
-          <p> {this.state.post.description} </p> {/* Delete Button Here */}
+          <p> {this.state.post.description} </p>
+          <p className="text-center">
+            Posted by: {this.state.post.user.displayName}
+            <img
+              className="rounded-circle"
+              alt="a"
+              src={this.state.post.user.googleImg}
+            />
+          </p>
           {this.props.auth._id === this.state.post.user._id ? (
             <div className="text-center mb-2">
               <button
@@ -69,8 +78,7 @@ class Post extends Component {
               </button>
             </div>
           ) : null}
-          {/*  */} {/* Gallery here */}
-          <PixabayGallery title={this.state.post.title} /> {/* _____________ */}
+          <PixabayGallery title={this.state.post.title} />
           <div className="text-center">
             Posted by: {this.state.post.user.displayName}
             <img
@@ -78,7 +86,7 @@ class Post extends Component {
               alt="a"
               src={this.state.post.user.googleImg}
             />
-            <br /> {/* Delete Button Here */}
+            <br />
             {this.props.auth._id === this.state.post.user._id ? (
               <div>
                 <button
@@ -89,22 +97,20 @@ class Post extends Component {
                 </button>
               </div>
             ) : null}
-            {/*  */} <br />
+            <br />
             {this.state.post.comments.map(comment => {
               return (
                 <div>
-                  {comment.text} <br />
-                  By: {comment.user.displayName}
-                  <img
-                    className="rounded-circle"
-                    alt="profile"
-                    src={comment.user.googleImg}
+                  <Comment
+                    text={comment.text}
+                    author={comment.user.displayName}
+                    imgsrc={comment.user.googleImg}
                   />
                 </div>
               );
             })}
             <Link
-              to={"/addcomment/" + this.props.match.params.id}
+              to={'/addcomment/' + this.props.match.params.id}
               className="btn btn-info"
             >
               Add Comment
@@ -123,7 +129,7 @@ class Post extends Component {
 function mapStateToProps({ auth, profile }) {
   return {
     auth,
-    profile
+    profile,
   };
 }
 
