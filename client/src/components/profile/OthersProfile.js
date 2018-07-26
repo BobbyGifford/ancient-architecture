@@ -28,8 +28,8 @@ class OthersProfile extends Component {
           <div key={post._id} className="col-4 offset-md-4">
             <div className="card bg-dark text-white">
               <div className="card-body">
-                <h5 className="card-title">{post.title}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">
+                <h5 className="card-title text-center">{post.title}</h5>
+                <h6 className="card-subtitle text-center mb-2 text-muted">
                   {post.location}
                 </h6>
                 {post.description}
