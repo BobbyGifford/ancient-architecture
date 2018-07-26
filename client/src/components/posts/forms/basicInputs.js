@@ -10,6 +10,7 @@ const basicInputs = props => {
           id={props.name}
           name={props.name}
           type={props.type}
+          required
           onChange={props.onChange}
         />
       </div>
@@ -23,6 +24,7 @@ const basicInputs = props => {
           id={props.name}
           name={props.name}
           type={props.type}
+          required
           onChange={props.onChange}
         />
       </div>
