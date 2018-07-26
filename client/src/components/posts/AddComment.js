@@ -25,7 +25,7 @@ class AddComment extends Component {
     console.log(this.state);
     axios.post('/api/posts/comment/' + this.props.match.params.id, this.state);
     this.props.fetchPosts();
-    history.push('/confirmation');
+    history.push('/confirmation/' + this.props.match.params.id);
   }
 
   render() {

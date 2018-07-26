@@ -37,7 +37,7 @@ class App extends Component {
           <Route path="/post/:id" component={Post} />
           <Route path="/addpost" component={AddPost} />
           <Route path="/addcomment/:id" component={AddComment} />
-          <Route path="/confirmation" component={Confirnmation} />
+          <Route path="/confirmation/:id" component={Confirnmation} />
           <Route path="/profileother/:id" component={OthersProfile} />
         </div>
       </Router>

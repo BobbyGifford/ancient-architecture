@@ -45,14 +45,16 @@ class Post extends Component {
             <h5> {this.state.post.location} </h5>
           </div>
           <br />
-          <ul className="list-group">
+          <h4 className="text-center">Cool Features</h4>
+          <ul
+            className="list-group col-5"
+            style={{ marginLeft: '20rem', marginBottom: '2rem' }}
+          >
             {this.state.post.keyfeatures.map(feature => {
               return (
                 <li
+                  className="list-group-item list-group-item-dark"
                   key={feature}
-                  style={{
-                    marginLeft: '28vw',
-                  }}
                 >
                   {feature}
                 </li>
@@ -61,7 +63,9 @@ class Post extends Component {
           </ul>
           <p> {this.state.post.description} </p>
           <p className="text-center">
-            Posted by: {this.state.post.user.displayName}
+            <Link to={'/profileother/' + this.state.post.user._id}>
+              Posted by: {this.state.post.user.displayName}
+            </Link>
             <img
               className="rounded-circle"
               alt="a"
@@ -80,7 +84,9 @@ class Post extends Component {
           ) : null}
           <PixabayGallery title={this.state.post.title} />
           <div className="text-center">
-            Posted by: {this.state.post.user.displayName}
+            <Link to={'/profileother/' + this.state.post.user._id}>
+              Posted by: {this.state.post.user.displayName}
+            </Link>
             <img
               className="rounded-circle"
               alt="a"
@@ -105,6 +111,7 @@ class Post extends Component {
                     text={comment.text}
                     author={comment.user.displayName}
                     imgsrc={comment.user.googleImg}
+                    userid={comment.user._id}
                   />
                 </div>
               );

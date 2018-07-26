@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class OthersProfile extends Component {
   async componentDidMount() {
@@ -32,6 +33,12 @@ class OthersProfile extends Component {
                   {post.location}
                 </h6>
                 {post.description}
+                <br />
+                <div className="text-center">
+                  <Link to={'/post/' + post._id} className="btn btn-success">
+                    Go to post
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
