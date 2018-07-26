@@ -3,11 +3,16 @@ import axios from 'axios';
 
 class OthersProfile extends Component {
   async componentDidMount() {
-    const res = await axios.get(
+    const profileRes = await axios.get(
       '/api/profile/user/' + this.props.match.params.id
     );
-    console.log(res.data);
-    this.setState({ otherProfile: res.data });
+    const postsRes = await axios.get(
+      '/api/posts/byuser/' + this.props.match.params.id
+    );
+    console.log(postsRes.data);
+    console.log(profileRes.data);
+    this.setState({ otherProfile: profileRes.data });
+    this.setState({ otherPosts: postsRes.data });
   }
 
   renderContent() {
@@ -24,24 +29,26 @@ class OthersProfile extends Component {
             Locations {this.state.otherProfile.user.displayName} is interested
             in:
           </h4>
-          {this.state.otherProfile.locationsOfInterest.map(location => {
-            return (
-              <div key={location._id}>
-                <div
-                  className="card bg-dark text-white text-center"
-                  style={{ width: '18rem' }}
-                >
-                  <div className="card-body">
-                    <h5 className="card-title">Name: {location.name}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">
-                      Location: {location.location}
-                    </h6>
-                    <a>Description: {location.description}</a>
+          <div className="row">
+            {this.state.otherProfile.locationsOfInterest.map(location => {
+              return (
+                <div key={location._id} className="col-3">
+                  <div
+                    className="card bg-dark text-white"
+                    // style={{ width: '18rem' }}
+                  >
+                    <div className="card-body">
+                      <h5 className="card-title">{location.name}</h5>
+                      <h6 className="card-subtitle mb-2 text-muted">
+                        {location.location}
+                      </h6>
+                      {location.description}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       );
     }
