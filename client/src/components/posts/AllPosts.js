@@ -32,7 +32,9 @@ class Posts extends Component {
                 </Link>
               </div>
               <div className="card-footer text-muted">
-                Posted by: {post.user.displayName}{' '}
+                <Link to={'/profileother/' + post.user._id}>
+                  Posted by: {post.user.displayName}
+                </Link>
                 <img
                   className="rounded-circle"
                   alt="a"

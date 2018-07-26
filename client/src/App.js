@@ -15,6 +15,7 @@ import Post from './components/posts/Post';
 import AddPost from './components/posts/forms/AddPost';
 import AddComment from './components/posts/AddComment';
 import Confirnmation from './components/posts/Confirmation';
+import OthersProfile from './components/profile/OthersProfile';
 
 class App extends Component {
   componentDidMount() {
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path="/addpost" component={AddPost} />
           <Route path="/addcomment/:id" component={AddComment} />
           <Route path="/confirmation" component={Confirnmation} />
+          <Route path="/profileother/:id" component={OthersProfile} />
         </div>
       </Router>
     );

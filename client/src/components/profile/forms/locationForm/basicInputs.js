@@ -10,6 +10,7 @@ const BasicInputs = ({ id, label, name, type, onChange }) => {
         name={name}
         type={type}
         onChange={onChange}
+        required
       />
     </div>
   );

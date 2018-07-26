@@ -153,5 +153,20 @@ router.post('/comment/:id', requireLogin, (req, res) => {
     .catch(() => { res.status(404).json({ error: "no post found" }) })
 })
 
+// @route   GET api/posts/byuser/:id
+// @desc    Gets posts by user
+// @access  Private
+
+router.get('/byuser/:id', requireLogin, (req, res) => {
+  Post.find({user: req.params.id})
+    .then((posts) => {
+      res.json(posts)
+    })
+    .catch((err) => {
+      res.status(404).json({message: "bad"})
+    })
+})
+
+
 
 module.exports = router;
