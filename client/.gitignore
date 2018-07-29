@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 
-apiKey.js
+# apiKey.js
 # testing
 /coverage
 
