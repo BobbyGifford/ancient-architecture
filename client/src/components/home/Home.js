@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mainImage from '../../images/cambodia1.jpg';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
   render() {
@@ -54,6 +55,14 @@ class Home extends Component {
             <div className="text-center">
               <h1>Welcome</h1>
               <h3>{this.props.auth.displayName}</h3>
+              <Link to="/profile" className="btn btn-info">
+                Go To Your Profile
+              </Link>
+              <br />
+              <br />
+              <Link to="/posts" className="btn btn-success">
+                Go To Posts
+              </Link>
             </div>
           </div>
         </div>
