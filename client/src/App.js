@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <div className="bg-dark text-light" style={{ minHeight: '100vh' }}>
+        <div style={{ minHeight: '100vh' }}>
           <Header />
           <Route exact path="/" component={Home} />
           <Route path="/profile" component={Profile} />

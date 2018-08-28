@@ -6,6 +6,7 @@ import history from '../../history';
 import { Link } from 'react-router-dom';
 
 import PixabayGallery from './pixabayGallery/PixabayGallery';
+import PostedBy from './postedBy';
 import Comment from './comments/Comment';
 
 class Post extends Component {
@@ -36,7 +37,7 @@ class Post extends Component {
 
   renderContent() {
     if (this.state.post === null || this.state.post === undefined) {
-      return <h1 className="text-center"> Loading </h1>;
+      return <h1 className="text-center">Loading</h1>;
     } else {
       return (
         <div>
@@ -62,16 +63,11 @@ class Post extends Component {
             })}
           </ul>
           <p> {this.state.post.description} </p>
-          <p className="text-center">
-            <Link to={'/profileother/' + this.state.post.user._id}>
-              Posted by: {this.state.post.user.displayName}
-            </Link>
-            <img
-              className="rounded-circle"
-              alt="a"
-              src={this.state.post.user.googleImg}
-            />
-          </p>
+          <PostedBy
+            id={this.state.post.user._id}
+            displayName={this.state.post.user.displayName}
+            googleImg={this.state.post.user.googleImg}
+          />
           {this.props.auth._id === this.state.post.user._id ? (
             <div className="text-center mb-2">
               <button
@@ -84,13 +80,10 @@ class Post extends Component {
           ) : null}
           <PixabayGallery title={this.state.post.title} />
           <div className="text-center">
-            <Link to={'/profileother/' + this.state.post.user._id}>
-              Posted by: {this.state.post.user.displayName}
-            </Link>
-            <img
-              className="rounded-circle"
-              alt="a"
-              src={this.state.post.user.googleImg}
+            <PostedBy
+              id={this.state.post.user._id}
+              displayName={this.state.post.user.displayName}
+              googleImg={this.state.post.user.googleImg}
             />
             <br />
             {this.props.auth._id === this.state.post.user._id ? (
@@ -104,9 +97,17 @@ class Post extends Component {
               </div>
             ) : null}
             <br />
+            <Link
+              to={'/addcomment/' + this.props.match.params.id}
+              className="btn btn-info"
+            >
+              Add Comment
+            </Link>
+            <br />
+            <br />
             {this.state.post.comments.map(comment => {
               return (
-                <div>
+                <div key={comment.text}>
                   <Comment
                     text={comment.text}
                     author={comment.user.displayName}
@@ -116,12 +117,6 @@ class Post extends Component {
                 </div>
               );
             })}
-            <Link
-              to={'/addcomment/' + this.props.match.params.id}
-              className="btn btn-info"
-            >
-              Add Comment
-            </Link>
           </div>
         </div>
       );

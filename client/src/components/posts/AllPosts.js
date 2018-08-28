@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import { Link } from 'react-router-dom';
 
+import PostedBy from './postedBy';
+
 class Posts extends Component {
   componentDidMount() {
     this.props.fetchPosts();
@@ -15,30 +17,26 @@ class Posts extends Component {
 
   renderPosts() {
     if (this.props.posts === null || this.props.posts === undefined) {
-      return <h1>Loading</h1>;
+      return <h1 className="text-center">Loading</h1>;
     } else {
       return this.props.posts.map(post => {
         return (
           <div key={post._id}>
-            <div className="card bg-dark text-white text-center">
+            <div className="card bg-light text-center">
               <h5 className="card-header">{post.title}</h5>
               <div className="card-body">
                 <h5 className="card-title">{post.location}</h5>
                 <p className="card-text">{post.description}</p>
-                {/* {this.state ? <img className="mb-3" src={this.state[post.title]} /> : null} */}
                 <br />
                 <Link to={'/post/' + post._id} className="btn btn-primary">
                   View Post
                 </Link>
               </div>
               <div className="card-footer text-muted">
-                <Link to={'/profileother/' + post.user._id}>
-                  Posted by: {post.user.displayName}
-                </Link>
-                <img
-                  className="rounded-circle"
-                  alt="a"
-                  src={post.user.googleImg}
+                <PostedBy
+                  id={post.user._id}
+                  displayName={post.user.displayName}
+                  googleImg={post.user.googleImg}
                 />
               </div>
             </div>
@@ -52,7 +50,7 @@ class Posts extends Component {
   render() {
     return (
       <div className="container text-center">
-        <h1>Posts</h1>
+        <h1 className="text-center">Posts</h1>
         <Link to="/addpost" className="btn btn-success my-2">
           Add Post
         </Link>

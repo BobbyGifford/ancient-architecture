@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+// Added logout
 class Header extends Component {
   renderContent() {
     if (
@@ -18,13 +18,23 @@ class Header extends Component {
       return (
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">
-              {this.props.auth.displayName}
+            <Link
+              className="nav-link"
+              to={'/profileother/' + this.props.auth._id}
+            >
+              Your Locations
             </Link>
           </li>
+
           <li className="nav-item">
             <Link className="nav-link" to="/posts">
-              Posts
+              Locations
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              Your Profile
             </Link>
           </li>
         </ul>

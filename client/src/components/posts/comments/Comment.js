@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Comment = props => {
   return (
     <div style={{ maxWidth: '30rem', marginLeft: '20rem' }}>
-      <div className="card bg-dark text-white text-center">
+      <div className="card bg-light text-center">
         <div className="card-body">
           <p className="card-text">{props.text}</p>
           <div className="card-footer">

@@ -21,14 +21,14 @@ class OthersProfile extends Component {
       this.state.otherPosts === null ||
       this.state.otherPosts === undefined
     ) {
-      return <h1>Loading</h1>;
+      return <h1 className="text-center">Loading</h1>;
     } else {
       return this.state.otherPosts.map(post => {
         return (
           <div key={post._id} className="col-4 offset-md-4">
-            <div className="card bg-dark text-white">
+            <div className="card bg-light">
+              <h5 className="card-header text-center">{post.title}</h5>
               <div className="card-body">
-                <h5 className="card-title text-center">{post.title}</h5>
                 <h6 className="card-subtitle text-center mb-2 text-muted">
                   {post.location}
                 </h6>
@@ -49,7 +49,7 @@ class OthersProfile extends Component {
 
   renderContent() {
     if (this.state === null || this.state === undefined) {
-      return <h1>Loading</h1>;
+      return <h1 className="text-center">Loading</h1>;
     } else {
       return (
         <div className="container text-center">
@@ -64,13 +64,10 @@ class OthersProfile extends Component {
           <div className="row">
             {this.state.otherProfile.locationsOfInterest.map(location => {
               return (
-                <div key={location._id} className="col-3">
-                  <div
-                    className="card bg-dark text-white"
-                    // style={{ width: '18rem' }}
-                  >
+                <div key={location._id} className="col-4">
+                  <div className="card bg-light">
+                    <h5 className="card-header">{location.name}</h5>
                     <div className="card-body">
-                      <h5 className="card-title">{location.name}</h5>
                       <h6 className="card-subtitle mb-2 text-muted">
                         {location.location}
                       </h6>
