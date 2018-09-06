@@ -113,6 +113,9 @@ class Post extends Component {
                     author={comment.user.displayName}
                     imgsrc={comment.user.googleImg}
                     userid={comment.user._id}
+                    currentuser={this.props.auth._id}
+                    postid={this.state.post._id}
+                    commentid={comment._id}
                   />
                 </div>
               );

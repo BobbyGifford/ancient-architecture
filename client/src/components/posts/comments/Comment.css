@@ -1,0 +1,7 @@
+.comment_icon{
+    float: right;
+}
+
+.comment_icon:hover{
+    cursor: pointer;
+}

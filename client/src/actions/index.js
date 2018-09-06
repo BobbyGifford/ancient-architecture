@@ -28,3 +28,14 @@ export const fetchPost = id => {
     dispatch({ type: FETCH_POST, payload: res.data });
   };
 };
+
+export const deleteComment = async (postid, commentid) => {
+  const res = await axios.delete(
+    '/api/posts/comment/' + postid + '/' + commentid
+  );
+  console.log(res.data);
+
+  fetchPosts();
+};
+
+// api/posts/comment/:postid/:commentid

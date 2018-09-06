@@ -50,7 +50,7 @@ class Posts extends Component {
   render() {
     return (
       <div className="container text-center">
-        <h1 className="text-center">Posts</h1>
+        <h1 className="text-center">Interesting locations</h1>
         <Link to="/addpost" className="btn btn-success my-2">
           Add Post
         </Link>
