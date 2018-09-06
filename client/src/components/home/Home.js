@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import mainImage from '../../images/cambodia1.jpg';
+import mainImage from '../../images/moorish.jpg';
 import { Link } from 'react-router-dom';
 
 import './Home.css';
@@ -9,20 +9,20 @@ class Home extends Component {
   render() {
     const style = {
       styleContainer: {
-        height: '80vh',
+        height: '95vh',
         width: '100%',
         backgroundImage: `url(${mainImage})`,
         backgroundPositionY: '-20vh',
       },
       styleBody: {
-        padding: '7vh 0 15vh 0',
+        padding: '15vh 0 15vh 0',
         width: '100%',
       },
       styleContent: {
-        backgroundColor: 'rgb(239, 232, 198, .9',
+        backgroundColor: 'rgb(0, 0, 0, .3',
         height: '100%',
         width: '100%',
-        color: 'black',
+        color: 'white',
         paddingTop: '2vh',
         paddingBottom: '2vh',
       },
@@ -56,8 +56,7 @@ class Home extends Component {
           <div style={style.styleBody}>
             <div style={style.styleContent}>
               <div className="text-center">
-                <h1>Welcome</h1>
-                <h3>{this.props.auth.displayName}</h3>
+                <h1>Welcome to Ancient Architure</h1>
                 <Link to="/profile" className="btn btn-info">
                   Go To Your Profile
                 </Link>
