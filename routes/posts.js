@@ -30,70 +30,72 @@ router.post("/", requireLogin, (req, res) => {
   if (req.body.wikipedia) newPost.media.wikipedia = req.body.wikipedia;
 
   new Post(newPost).save().then(profile => {
-    res.json(profile)
-  })
+    res.json(profile);
+  });
 });
 
 // @route   GET api/posts/all
 // @desc    Fetches all posts
 // @access  Private
 
-router.get('/', requireLogin, (req, res) => {
+router.get("/", requireLogin, (req, res) => {
   Post.find()
     .populate("user", ["displayName", "googleImg"])
     .sort({ date: -1 })
-    .then((posts) => {
+    .then(posts => {
       if (!posts) {
-        res.status(404).json("No posts found")
+        res.status(404).json("No posts found");
       }
-      res.status(200).json(posts)
-    })
-})
+      res.status(200).json(posts);
+    });
+});
 
 // @route   GET api/posts/:id
 // @desc    Fetch post by id
 // @access  Private
 
-router.get('/:id', requireLogin, (req, res) => {
+router.get("/:id", requireLogin, (req, res) => {
   Post.findById(req.params.id)
     .populate("user", ["displayName", "googleImg"])
     .populate("comments.user", ["displayName", "googleImg"])
-    .then((post) => {
-      res.json(post)
+    .then(post => {
+      res.json(post);
     })
-    .catch((error) => res.status(404).json({ postnotfound: "No post found" }))
-})
+    .catch(error => res.status(404).json({ postnotfound: "No post found" }));
+});
 
 // @route   GET api/posts/all
 // @desc    Fetches all posts
 // @access  Private
 
-router.delete('/:id', requireLogin, (req, res) => {
+router.delete("/:id", requireLogin, (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => {
+    .then(post => {
       // Check for creator of post
       if (post.user.toString() !== req.user.id) {
-        res.status(401).json({ Unauthorized: "You're not the post's author" })
+        res.status(401).json({ Unauthorized: "You're not the post's author" });
       }
-      post.remove().then(() => res.json({ message: "Post was removed" }))
+      post.remove().then(() => res.json({ message: "Post was removed" }));
     })
-    .catch(() => { res.json({ error: "No post found" }) })
-})
+    .catch(() => {
+      res.json({ error: "No post found" });
+    });
+});
 
 // @route   POST api/posts/like/:id
 // @desc    Like post
 // @access  Private
 
-router.post('/like/:id', requireLogin, (req, res) => {
+router.post("/like/:id", requireLogin, (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       if (
-        post.likes.filter(like => like.user.toString() === req.user.id)
-          .length > 0
+        post.likes.filter(like => like.user.toString() === req.user.id).length >
+        0
       ) {
         return res
           .status(400)
-          .json({ alreadyliked: 'User already liked this post' });
+          .json({ alreadyliked: "User already liked this post" });
       }
 
       // Add user id to likes array
@@ -101,14 +103,14 @@ router.post('/like/:id', requireLogin, (req, res) => {
 
       post.save().then(post => res.json(post));
     })
-    .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
-})
+    .catch(err => res.status(404).json({ postnotfound: "No post found" }));
+});
 
 // @route   POST api/posts/unlike/:id
 // @desc    Unlike post
 // @access  Private
 
-router.delete('/like/:id', requireLogin, (req, res) => {
+router.delete("/like/:id", requireLogin, (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
       if (
@@ -117,7 +119,7 @@ router.delete('/like/:id', requireLogin, (req, res) => {
       ) {
         return res
           .status(400)
-          .json({ notliked: 'You have not yet liked this post' });
+          .json({ notliked: "You have not yet liked this post" });
       }
 
       // Get remove index
@@ -131,42 +133,62 @@ router.delete('/like/:id', requireLogin, (req, res) => {
       // Save
       post.save().then(post => res.json(post));
     })
-    .catch(err => res.status(404).json({ postnotfound: 'No post found' }));
+    .catch(err => res.status(404).json({ postnotfound: "No post found" }));
 });
 
 // @route   POST api/posts/comment/:id
 // @desc    Add comment to post
 // @access  Private
 
-router.post('/comment/:id', requireLogin, (req, res) => {
+router.post("/comment/:id", requireLogin, (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
-
       const newComment = {
         user: req.user.id,
         text: req.body.text
-      }
+      };
 
-      post.comments.unshift(newComment)
-      post.save().then(post => { res.json({ post }) })
+      post.comments.unshift(newComment);
+      post.save().then(post => {
+        res.json({ post });
+      });
     })
-    .catch(() => { res.status(404).json({ error: "no post found" }) })
-})
+    .catch(() => {
+      res.status(404).json({ error: "no post found" });
+    });
+});
+
+// @route   DELETE api/posts/comment/:postid/:commentid
+// @desc    Delete comment from post
+// @access  Private
+
+router.delete("/comment/:postid/:commentid", requireLogin, (req, res) => {
+  Post.findById(req.params.postid)
+    .then(post => {
+      for (var x of post.comments) {
+        if (x.id === req.params.commentid) {
+          post.comments.splice(post.comments.indexOf(x), 1);
+        }
+      }
+      post.save().then(post => {
+        res.json({ post })
+      })
+    })
+    .catch(error => console.log(error));
+});
 
 // @route   GET api/posts/byuser/:id
 // @desc    Gets posts by user
 // @access  Private
 
-router.get('/byuser/:id', requireLogin, (req, res) => {
-  Post.find({user: req.params.id})
-    .then((posts) => {
-      res.json(posts)
+router.get("/byuser/:id", requireLogin, (req, res) => {
+  Post.find({ user: req.params.id })
+    .then(posts => {
+      res.json(posts);
     })
-    .catch((err) => {
-      res.status(404).json({message: "bad"})
-    })
-})
-
-
+    .catch(err => {
+      res.status(404).json({ message: "bad" });
+    });
+});
 
 module.exports = router;
