@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import mainImage from '../../images/moorish.jpg';
 import { Link } from 'react-router-dom';
 
+import AboutArea from './AboutArea';
+
 import './Home.css';
 
 class Home extends Component {
   render() {
     const style = {
       styleContainer: {
-        height: '95vh',
+        height: '85vh',
         width: '100%',
         backgroundImage: `url(${mainImage})`,
         backgroundPositionY: '-20vh',
@@ -30,25 +32,28 @@ class Home extends Component {
     console.log('Auth:', this.props.auth);
     console.log('Profile:', this.props.profile);
     return !this.props.auth ? (
-      <div style={style.styleContainer}>
-        <div style={style.styleBody}>
-          <div style={style.styleContent}>
-            <div className="text-center">
-              <h1>Welcome to Ancient Architure</h1>
-              <blockquote className="blockquote text-center">
-                <p className="mb-0">
-                  "I believe we are a species with amnesia. I think we have
-                  forgotten our roots and our origins. I think we are quite lost
-                  in many ways."
-                </p>
-                <footer className="blockquote-footer">Graham Hancock</footer>
-              </blockquote>
-              <a className="btn btn-success" href="/api/auth/google/">
-                Login with Google
-              </a>
+      <div>
+        <div style={style.styleContainer}>
+          <div style={style.styleBody}>
+            <div style={style.styleContent}>
+              <div className="text-center">
+                <h1>Welcome to Ancient Architure</h1>
+                <blockquote className="blockquote text-center">
+                  <p className="mb-0">
+                    "I believe we are a species with amnesia. I think we have
+                    forgotten our roots and our origins. I think we are quite
+                    lost in many ways."
+                  </p>
+                  <footer className="blockquote-footer">Graham Hancock</footer>
+                </blockquote>
+                <a className="btn btn-success" href="/api/auth/google/">
+                  Login with Google
+                </a>
+              </div>
             </div>
           </div>
         </div>
+        <AboutArea />
       </div>
     ) : (
       <div>
@@ -69,11 +74,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
-          <h1>Header</h1>
-          <hr />
-          <div className="subtitle">subtitle</div>
-        </div>
+        <AboutArea />
       </div>
     );
   }

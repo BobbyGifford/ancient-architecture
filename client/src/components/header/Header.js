@@ -47,7 +47,7 @@ class Header extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           {this.props.auth ? (
-            <Link to="/posts" className="navbar-brand">
+            <Link to="/" className="navbar-brand">
               Ancient Architecture
             </Link>
           ) : (

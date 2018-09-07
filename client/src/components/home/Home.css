@@ -1,7 +1,12 @@
 .subtitle {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 1.3rem;
-    color: grey;
-    height: 70vh;
-  }
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: grey;
+  margin-bottom: 5vh;
+}
+
+.about-area {
+  margin-top: 2vh;
+  height: 70vh;
+}
