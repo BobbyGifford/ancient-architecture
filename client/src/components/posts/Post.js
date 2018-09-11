@@ -97,12 +97,14 @@ class Post extends Component {
               </div>
             ) : null}
             <br />
-            <Link
-              to={'/addcomment/' + this.props.match.params.id}
-              className="btn btn-info"
-            >
-              Add Comment
-            </Link>
+            {this.props.profile ? (
+              <Link
+                to={'/addcomment/' + this.props.match.params.id}
+                className="btn btn-info"
+              >
+                Add Comment
+              </Link>
+            ) : null}
             <br />
             <br />
             {this.state.post.comments.map(comment => {

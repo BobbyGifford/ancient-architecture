@@ -64,7 +64,7 @@ class OthersProfile extends Component {
           <div className="row">
             {this.state.otherProfile.locationsOfInterest.map(location => {
               return (
-                <div key={location._id} className="col-4">
+                <div key={location._id} className="col-12">
                   <div className="card bg-light">
                     <h5 className="card-header">{location.name}</h5>
                     <div className="card-body">

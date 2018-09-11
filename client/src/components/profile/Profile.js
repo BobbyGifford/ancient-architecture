@@ -16,7 +16,12 @@ class Profile extends Component {
     if (this.props.profile === null || this.props.profile === undefined) {
       return (
         <div className="text-center">
-          <Link className="text-center btn btn-info" to="/profileform">
+          <h1>Create your profile</h1>
+          <Link
+            style={{ marginTop: '15vh' }}
+            className="text-center btn btn-info"
+            to="/profileform"
+          >
             Create Profile
           </Link>
         </div>

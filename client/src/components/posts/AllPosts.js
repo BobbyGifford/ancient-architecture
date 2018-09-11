@@ -51,17 +51,19 @@ class Posts extends Component {
     return (
       <div className="container text-center">
         <h1 className="text-center">Interesting locations</h1>
-        <Link to="/addpost" className="btn btn-success my-2">
-          Add Post
-        </Link>
+        {this.props.profile ? (
+          <Link to="/addpost" className="btn btn-success my-2">
+            Add Post
+          </Link>
+        ) : null}
         {this.renderPosts()}
       </div>
     );
   }
 }
 
-function mapStateToProps({ posts }) {
-  return { posts };
+function mapStateToProps({ posts, profile }) {
+  return { posts, profile };
 }
 
 export default connect(

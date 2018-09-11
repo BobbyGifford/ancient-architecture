@@ -17,14 +17,16 @@ class Header extends Component {
     } else {
       return (
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link
-              className="nav-link"
-              to={'/profileother/' + this.props.auth._id}
-            >
-              Your Locations
-            </Link>
-          </li>
+          {this.props.profile ? (
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                to={'/profileother/' + this.props.auth._id}
+              >
+                Your Locations
+              </Link>
+            </li>
+          ) : null}
 
           <li className="nav-item">
             <Link className="nav-link" to="/posts">
@@ -81,8 +83,8 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, profile }) {
+  return { auth, profile };
 }
 
 export default connect(mapStateToProps)(Header);
