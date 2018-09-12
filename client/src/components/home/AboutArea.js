@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './AboutArea.css';
+
 const AboutArea = () => {
   return (
     <div className="about-area">
@@ -25,6 +27,17 @@ const AboutArea = () => {
             without discrimination. There is no dogma or agenda that needs to be
             catered to. Just people sharing ideas about the origins of some of
             these amazing locations.
+          </p>
+          <p className="aboutVid">
+            <iframe
+              title="aboutVid"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/E23s8MmSjuQ"
+              frameBorder="0"
+              allow="encrypted-media"
+              allowFullScreen
+            />
           </p>
         </div>
       </div>
