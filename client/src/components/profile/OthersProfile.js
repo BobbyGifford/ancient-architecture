@@ -3,29 +3,32 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class OthersProfile extends Component {
-  async componentDidMount() {
-    const profileRes = await axios.get(
-      '/api/profile/user/' + this.props.match.params.id
-    );
-    const postsRes = await axios.get(
-      '/api/posts/byuser/' + this.props.match.params.id
-    );
-    console.log(postsRes.data);
-    console.log(profileRes.data);
-    this.setState({ otherProfile: profileRes.data });
-    this.setState({ otherPosts: postsRes.data });
+  constructor() {
+    super();
+
+    this.state = {
+      otherProfile: null,
+      otherPosts: null,
+    };
   }
+
+  componentDidMount() {
+    axios.get('/api/profile/user/' + this.props.match.params.id).then(res => {
+      this.setState({ otherProfile: res.data });
+    });
+
+    axios.get('/api/posts/byuser/' + this.props.match.params.id).then(res => {
+      this.setState({ otherPosts: res.data });
+    });
+  }
+
   rednerPosts() {
-    if (
-      this.state === null ||
-      this.state.otherPosts === null ||
-      this.state.otherPosts === undefined
-    ) {
+    if (this.state.otherPosts === null || this.state.otherPosts === undefined) {
       return <h1 className="text-center">Loading</h1>;
     } else {
       return this.state.otherPosts.map(post => {
         return (
-          <div key={post._id} className="col-4 offset-md-4">
+          <div key={post._id} className="col-12">
             <div className="card bg-light">
               <h5 className="card-header text-center">{post.title}</h5>
               <div className="card-body">
@@ -48,7 +51,7 @@ class OthersProfile extends Component {
   }
 
   renderContent() {
-    if (this.state === null || this.state === undefined) {
+    if (this.state.otherPosts === null || this.state.otherProfile === null) {
       return <h1 className="text-center">Loading</h1>;
     } else {
       return (

@@ -10,3 +10,27 @@
   margin-top: 2vh;
   height: 70vh;
 }
+
+.style-container{
+  background: url(../../images/moorish.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 15vh;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.style-body{
+  padding: 15vh 0 15vh 0;
+  width: 100%;
+}
+
+.style-content{
+  background-color: rgb(0, 0, 0, .3);
+  height: 100%;
+  width: 100%;
+  color: white;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+}
