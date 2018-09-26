@@ -51,7 +51,7 @@ class Header extends Component {
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <Link to="/" className="navbar-brand">
-            <img style={{ maxHeight: '4rem' }} src={logo} alt="logo" />
+            <img style={{ maxHeight: '3rem' }} src={logo} alt="logo" />
           </Link>
 
           <button
