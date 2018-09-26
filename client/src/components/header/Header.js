@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import logo from '../../images/ancientlogo3.png';
 // Added logout
 class Header extends Component {
   renderContent() {
@@ -48,15 +50,9 @@ class Header extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          {this.props.auth ? (
-            <Link to="/" className="navbar-brand">
-              Ancient Architecture
-            </Link>
-          ) : (
-            <Link to="/" className="navbar-brand">
-              Ancient Architecture
-            </Link>
-          )}
+          <Link to="/" className="navbar-brand">
+            <img style={{ maxHeight: '4rem' }} src={logo} alt="logo" />
+          </Link>
 
           <button
             className="navbar-toggler"

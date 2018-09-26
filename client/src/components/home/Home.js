@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import AboutArea from './AboutArea';
-
 import './Home.css';
 
 class Home extends Component {
@@ -16,7 +15,7 @@ class Home extends Component {
           <div className="style-body">
             <div className="style-content">
               <div className="text-center">
-                <h1>Welcome to Ancient Architure</h1>
+                <h1>Welcome to Ancient Architecture</h1>
                 <blockquote className="blockquote text-center">
                   <p className="mb-0">
                     "I believe we are a species with amnesia. I think we have
@@ -40,7 +39,8 @@ class Home extends Component {
           <div className="style-body">
             <div className="style-content">
               <div className="text-center">
-                <h1>Welcome to Ancient Architure</h1>
+                <h1>Welcome back {this.props.auth.displayName}</h1>
+                <br />
                 <Link to="/profile" className="btn btn-info">
                   Go To Your Profile
                 </Link>
