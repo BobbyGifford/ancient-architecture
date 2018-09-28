@@ -21,10 +21,7 @@ class Header extends Component {
         <ul className="navbar-nav mr-auto">
           {this.props.profile ? (
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                to={'/profileother/' + this.props.auth._id}
-              >
+              <Link className="nav-link" to={'/yourposts'}>
                 Your Locations
               </Link>
             </li>

@@ -7,8 +7,6 @@ import './Home.css';
 
 class Home extends Component {
   render() {
-    console.log('Auth:', this.props.auth);
-    console.log('Profile:', this.props.profile);
     return !this.props.auth ? (
       <div>
         <div className="style-container">

@@ -50,7 +50,9 @@ class Posts extends Component {
   render() {
     return (
       <div className="container text-center">
-        <h1 className="text-center">Interesting locations</h1>
+        <div className="text-center subtitle">
+          Locations other users are interested in
+        </div>
         {this.props.profile ? (
           <Link to="/addpost" className="btn btn-success my-2">
             Add Post

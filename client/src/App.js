@@ -12,6 +12,7 @@ import ProfileForm from './components/profile/forms/profileForm/ProfileForm';
 import EditProfileFrom from './components/profile/forms/profileForm/EditProfileForm';
 import LocationForm from './components/profile/forms/locationForm/LocationForm';
 import Posts from './components/posts/AllPosts';
+import YourPosts from './components/posts/YourPosts';
 import Post from './components/posts/Post';
 import AddPost from './components/posts/forms/AddPost';
 import AddComment from './components/posts/AddComment';
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path="/editprofileform" component={EditProfileFrom} />
           <Route path="/locationform" component={LocationForm} />
           <Route path="/posts" component={Posts} />
+          <Route path="/yourposts" component={YourPosts} />
           <Route path="/post/:id" component={Post} />
           <Route path="/addpost" component={AddPost} />
           <Route path="/addcomment/:id" component={AddComment} />
