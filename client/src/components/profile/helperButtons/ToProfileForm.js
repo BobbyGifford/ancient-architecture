@@ -5,7 +5,7 @@ class ToProfileForm extends Component {
   render() {
     return (
       <div className="text-center">
-        <Link className="btn btn-info" to="/profileform">
+        <Link className="btn btn-info" to="/editprofileform">
           Edit Profile
         </Link>
       </div>

@@ -10,6 +10,7 @@ const basicInputs = props => {
         name={props.name}
         type={props.type}
         onChange={props.onChange}
+        defaultValue={props.defaultValue}
       />
     </div>
   );

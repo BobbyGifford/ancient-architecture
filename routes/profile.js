@@ -24,11 +24,18 @@ router.post("/", requireLogin, (req, res) => {
 
   // Social
   profileFields.social = {};
-  if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-  if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-  if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-  if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
-  if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+  let socialFieldsCheck = req.body.social;
+  if (socialFieldsCheck) {
+    if (socialFieldsCheck.youtube)
+      profileFields.social.youtube = socialFieldsCheck.youtube;
+    if (socialFieldsCheck.twitter)
+      profileFields.social.twitter = socialFieldsCheck.twitter;
+    if (socialFieldsCheck.facebook)
+      profileFields.social.facebook = socialFieldsCheck.facebook;
+    if (socialFieldsCheck.linkedin)
+      profileFields.social.linkedin = socialFieldsCheck.linkedin;
+    if (req.body.instagram) profileFields.instagram = req.body.instagram;
+  }
 
   Profile.findOne({ user: req.user.id }).then(profile => {
     if (profile) {
@@ -96,14 +103,14 @@ router.get("/user/", requireLogin, (req, res) => {
     .populate("user", ["displayName", "googleImg"])
     .then(profile => {
       if (!profile) {
-        res.status(404).json({ error: "No profile found" })
+        res.status(404).json({ error: "No profile found" });
       }
-      res.json(profile)
+      res.json(profile);
     })
     .catch(() => {
-      res.status(404).json({ error: "no profile found for that user" })
-    })
-})
+      res.status(404).json({ error: "no profile found for that user" });
+    });
+});
 
 // @route    GET api/profile/user/user_id
 // @desc     Fetches profile by user id.
@@ -128,23 +135,24 @@ router.get("/user/:user_id", requireLogin, (req, res) => {
 // @access   Private
 
 router.delete("/locationofinterest/:locationId", requireLogin, (req, res) => {
-  Profile.findOne({ user: req.user.id }).then(profile => {
-    // Get remove index
-    const removeIndex = profile.locationsOfInterest
-      .map(item => item.id)
-      .indexOf(req.params.locationId);
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      // Get remove index
+      const removeIndex = profile.locationsOfInterest
+        .map(item => item.id)
+        .indexOf(req.params.locationId);
 
-    // Slice of of locations array
-    profile.locationsOfInterest.splice(removeIndex, 1);
+      // Slice of of locations array
+      profile.locationsOfInterest.splice(removeIndex, 1);
 
-    // Save
-    profile.save().then(profile => {
-      res.json(profile)
+      // Save
+      profile.save().then(profile => {
+        res.json(profile);
+      });
     })
-  })
     .catch(error => {
-      res.status(404).json(error)
-    })
+      res.status(404).json(error);
+    });
 });
 
 module.exports = router;

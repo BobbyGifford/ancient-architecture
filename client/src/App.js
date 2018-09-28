@@ -9,6 +9,7 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import Profile from './components/profile/Profile';
 import ProfileForm from './components/profile/forms/profileForm/ProfileForm';
+import EditProfileFrom from './components/profile/forms/profileForm/EditProfileForm';
 import LocationForm from './components/profile/forms/locationForm/LocationForm';
 import Posts from './components/posts/AllPosts';
 import Post from './components/posts/Post';
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/profileform" component={ProfileForm} />
+          <Route path="/editprofileform" component={EditProfileFrom} />
           <Route path="/locationform" component={LocationForm} />
           <Route path="/posts" component={Posts} />
           <Route path="/post/:id" component={Post} />
